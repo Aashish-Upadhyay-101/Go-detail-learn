@@ -2,11 +2,20 @@ package main
 
 import (
 	"fmt"
+	"os"
 )
 
 func main() {
-	var a complex128
-	fmt.Println(a)
+	fmt.Println(printSpaceSeparatedCommandLineArgument(os.Args))
 }
 
+func printSpaceSeparatedCommandLineArgument (args []string) string {
+	var res, sep string
+	for i := 0; i < len(os.Args); i++ {
+		res += sep + os.Args[i]
+		sep = " "
+	}
+
+	return res
+}
 
