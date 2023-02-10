@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"flag"
 	"fmt"
 	"image"
 	"image/color"
@@ -13,14 +14,26 @@ import (
 	"strings"
 )
 
+// command line arguments
+var n = flag.Bool("n", false, "omit trailing newline")
+var sep = flag.String("s", " ", "separator")
+
 func main() {
-	// fmt.Println(printSpaceSeparatedCommandLineArgument(os.Args))
-	// fmt.Println(printCommandLineArgumentFromAIndex(os.Args, 2))
-	// printCountAndTextFromFile()
-	// countFromStandardInput()
-	// lissajous(os.Stdout)
+	fmt.Println(printSpaceSeparatedCommandLineArgument(os.Args))
+	fmt.Println(printCommandLineArgumentFromAIndex(os.Args, 2))
+	printCountAndTextFromFile()
+	countFromStandardInput()
+	lissajous(os.Stdout)
 	pointerExample()
 	fmt.Println(f())
+	v := 2
+	incr(&v)
+	fmt.Println(incr(&v))
+	flag.Parse()
+	fmt.Print(strings.Join(flag.Args(), *sep))
+	if !*n {
+		fmt.Println()
+	}
 }
 
 func printSpaceSeparatedCommandLineArgument(args []string) string {
@@ -138,4 +151,10 @@ func pointerExample() {
 func f() *int {
 	a := 2
 	return &a
+}
+
+// modifies the actual value
+func incr(p *int) int {
+	*p++
+	return *p
 }
