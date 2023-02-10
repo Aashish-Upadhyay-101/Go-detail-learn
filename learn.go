@@ -18,7 +18,9 @@ func main() {
 	// fmt.Println(printCommandLineArgumentFromAIndex(os.Args, 2))
 	// printCountAndTextFromFile()
 	// countFromStandardInput()
-	lissajous(os.Stdout)
+	// lissajous(os.Stdout)
+	pointerExample()
+	fmt.Println(f())
 }
 
 func printSpaceSeparatedCommandLineArgument(args []string) string {
@@ -125,4 +127,15 @@ func lissajous(out io.Writer) {
 		anim.Image = append(anim.Image, img)
 	}
 	gif.EncodeAll(out, &anim)
+}
+
+// pointer
+func pointerExample() {
+	var x, y int
+	fmt.Println(&x == &x, &x == &y, &x)
+}
+
+func f() *int {
+	a := 2
+	return &a
 }
